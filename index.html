@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Automatyzacja checklist za pomocą Site Health Check w WordPressie - Maciek Palmowski</title>
+
+        <meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link href="https://fonts.googleapis.com/css?family=Asap:400,500,700&display=swap&subset=latin-ext" rel="stylesheet">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/white.css" id="theme">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<div class="logo-sa">
+			<!-- <a href="https://osomstudio.com" target="_blank">Osom Studio</a> -->
+		</div>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+
+                <!-- <section data-background-transition="zoom" class="text-center" data-background="#5C16A3">
+                    <div class="text">
+                        <img src="img/camp-logo-4.png" class="width100" alt="">
+                    </div>
+                </section> -->
+
+				<section>
+					<div class="inner">
+						<div class="inner-left-50">
+                            <div class="text">
+                                <p><small>WordPress</small></p>
+                            </div>
+                            <h1 class="title header-color">Automatyzacja checklist za pomocą Site Health Check w WordPressie</h1>
+                            <div class="text">
+                                <p><small>Maciek Palmowski</small></p>
+                            </div>
+						</div>
+						<div class="inner-right-50">
+							<div class="photobg-inner">
+								<div class="photobg colorfull contain" style="background-image: url('img/checklisty-cover.png')">
+								</div>
+							</div>
+						</div>
+                    </div>
+                </section>
+
+                <section>
+					<div class="inner">
+						<div class="inner-right">
+							<div class="photobg-inner">
+								<div class="photobg" style="background-image: url('img/maciek.jpg')">
+								</div>
+							</div>
+						</div>
+						<div class="inner-left">
+							<h1 class="title header-color"><span>Hello</span>Maciek Palmowski</h1>
+							<div class="text">
+								<p>
+									<small>email</small>
+									m.palmowski@freshpixels.pl
+								</p>
+								<p>
+									<small>wordpress.org</small>
+									profiles.wordpress.org/palmiak
+								</p>
+								<p>
+									<small>github</small>
+									github.com/palmiak
+								</p>
+                                <p>
+									<small>Timber Collaborator</small>
+									github.com/timber/timber
+								</p>
+								
+								<p>
+									<small>WordPress Developer</small>
+									OsomStudio
+								</p>
+							</div>
+						</div>
+                    </div>
+
+				</section>
+
+                <section data-background-image="img/sh_1.png" data-background-position="top">
+					
+                </section>
+
+                <section>
+                    <div class="inner">
+                        <div class="inner-left-small">
+                            <h2 class="title header-color">Do czego służy?</h2>
+                        </div>
+                        <div class="inner-right-big">
+                            <div class="text">
+                                <ul>
+                                    <li>pozwala sprawdzić czy występują jakieś podstawowe błędy WP</li>
+									<li>wypisuje konfigurację serwera i WordPressa</li>
+									<li>pozwala dopisywać własne testy</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section data-background-image="img/sh_2.png" data-background-position="top">
+					
+                </section>
+                <section>
+                    <div class="inner">
+                        <div class="inner-left-small">
+                            <h2 class="title header-color">Motywacja</h2>
+                        </div>
+                        <div class="inner-right-big">
+                            <div class="text">
+                                <ul>
+                                    <li>Checklista jest długa i nudna</li>
+									<li>Robiąc to w kółko spada nasza motywacja</li>
+									<li>Po co robić coś co może za nas zrobić automat?</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="inner">
+                        <div class="inner-left-small">
+                            <h2 class="title header-color">Nasze testy</h2>
+                        </div>
+                        <div class="inner-right-big">
+                            <div class="text">
+                                <ul>
+                                    <li>czy pliki 404.php oraz search.php</li>
+									<li>czy główny mail jest poprawny</li>
+                                    <li>czy user admin jest usunięty</li>
+                                    <li>czy można edyotwać pliki</li>
+                                    <li>czy nie występuje nigdzie domena z naszego serwera developerskiego</li>
+                                    <li>czy mamy włączone indexowanie</li>
+                                    <li>czy zablokowana jest rejestracja gości</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="inner">
+                        <div class="inner-full">
+                            <h2 class="title header-color">Jak wygląda test?</h2>
+                            <div class="text">
+<pre lang="php"><code>add_filter( 'site_status_tests', 'palmiak_add_404_test' );
+
+function palmiak_add_404_test( $tests ) {
+    $tests['direct']['palmiak_404'] = array(
+        'label' => 'Czy motyw zawiera plik 404.php',
+        'test'  => 'palmiak_404_test',
+    );
+    return $tests;
+}
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="inner">
+                        <div class="inner-full">
+                            <div class="text">
+<pre lang="php"><code>function palmiak_404_test() {
+    $result = []; // wartości domyślne
+    
+    if( jakis_test() ) {
+        $result = []; // wartości kiedy występuje błąd
+    }
+
+    return $result;
+}
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="inner">
+                        <div class="inner-full">
+                            <div class="text">
+<pre lang="php"><code>$result = [
+    'label'       => 'W motywie jest plik 404.php.',
+    'status'      => 'good',
+    'badge'       => [
+        'label' => 'Palmiakowe testy',
+        'color' => 'blue',
+    ],
+    'description' => '<p>Nasze motywy powinny zawierać plik 404.php.</p>',
+    'actions'     => '',
+    'test'        => 'palmiak_404',
+];
+
+if ( ! locate_template( '404.php' ) ) {
+    $result['status']      = 'recommended';
+    $result['label']       = 'Brak pliku 404.php.';
+    $result['description'] = '<p>Motyw powinien zawierać plik 404.php - dodaj go.</p>';
+}
+
+return $result;
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="inner">
+                        <div class="inner-left-small">
+                            <h2 class="title header-color">Efekt</h2>
+                        </div>
+                        <div class="inner-right-big">
+                            <div class="text">
+                                <img src="img/sh_3.png" alt="Collaboration">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="inner">
+                        <div class="inner-left-small">
+                            <h2 class="title header-color">Efekt</h2>
+                        </div>
+                        <div class="inner-right-big">
+                            <div class="text">
+                                <img src="img/sh_4.png" alt="Collaboration">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="inner">
+                        <div class="inner-full">
+                            <h2 class="title header-color">Test czy jest user "admin"</h2>
+                            <div class="text">
+<pre lang="php"><code>add_filter( 'site_status_tests', 'palmiak_add_admin_test' );
+
+function palmiak_add_admin_test( $tests ) {
+    $tests['direct']['palmiak_admin'] = array(
+        'label' => 'Czy strona posiada usera "admin"',
+        'test'  => 'palmiak_admin_test',
+    );
+    return $tests;
+}
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="inner">
+                        <div class="inner-full">
+                            <div class="text">
+<pre lang="php"><code>$result = [
+    'label'       => 'Strona nie ma usera "admin"',
+    'status'      => 'good',
+    'badge'       => [
+        'label' => 'Palmiakowe testy',
+        'color' => 'red',
+    ],
+    'description' => '<p>Nasze strony nie powinny mieć usera "admin".</p>',
+    'test'        => 'palmiak_admin',
+];
+
+if ( ! empty( get_user_by( 'login', 'admin' ) ) ) {
+    $result['status']      = 'critical';
+    $result['label']       = 'Na stronie jest użytkownik "admin".';
+    $result['description'] = '<p>Powinniśmy go usunąć ze względów bezpieczeństwa.</p>';
+    $result['actions']     = '<p><a href="'. admin_url( 'users.php' ) .'">
+                                Usuń użytkownika</a></p>';
+}
+
+return $result;
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="inner">
+                        <div class="inner-left-small">
+                            <h2 class="title header-color">Efekt</h2>
+                        </div>
+                        <div class="inner-right-big">
+                            <div class="text">
+                                <img src="img/sh_5.png" alt="Collaboration">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <div class="inner">
+                        <div class="inner-full">
+                            <h2 class="title header-color">Test asynchroniczny</h2>
+                            <div class="text">
+<pre lang="php"><code>add_filter( 'site_status_tests', 'palmiak_add_secure_test' );
+
+function palmiak_add_secure_test( $tests ) {
+    $tests['async']['palmiak_secure'] = array(
+        'label' => 'Czy działa wersja dla https://',
+        'test'  => 'palmiak_secure_test',
+    );
+    return $tests;
+}
+
+add_action( 'wp_ajax_health-check-palmiak-secure_test', 'palmiak_secure_test' );
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                        <div class="inner">
+                            <div class="inner-full">
+                                <h2 class="title header-color">Test asynchroniczny</h2>
+                                <div class="text">
+    <pre lang="php"><code>function redirect_test() {
+    $ret = wp_remote_get( 'https://api.redirect.li/v1/http/?url=SOME_URL' );
+    $body = json_decode( $ret['body'] );
+
+    if( $body->status == 500 ) {
+        return false;
+    } else {
+        return true;
+    }
+}
+    </code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+    
+                <section>
+                    <div class="inner">
+                        <div class="inner-full">
+                            <div class="text">
+<pre lang="php"><code>$result = [
+    'label'       => 'Czy działa wersja https:// dla strony.',
+    'status'      => 'good',
+    'badge'       => [
+        'label' => 'Palmiakowe testy',
+        'color' => 'red',
+    ],
+    'description' => '<p>Nasze strony muszą działać pod https.</p>',
+    'test'        => 'palmiak_secure_test',
+];
+
+if ( ! redirect_test() ) {
+    $result['status']      = 'critical';
+    $result['label']       = 'Strona nie działa pod https://';
+    $result['description'] = '<p>Musimy to poprawić.</p>';
+}
+
+wp_send_json_success( $result );
+</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section data-background-image="img/sh.gif" data-background-position="top">
+					
+                </section>
+
+                <section>
+                        <div class="inner">
+                            <h1 class="" style="margin:0 auto;">Pytania?</h1>
+                        </div>
+                </section>
+
+                <section>
+                    <div class="inner">
+                        <div class="inner-full">
+                            <h1 class="title header-color">Zapraszamy na wordpressowka.pl</h1>
+                            <div class="text">
+                                <center><img src="img/wordpressowka-logo.svg" style="width:200px"/></center>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/search/search.js', async: true },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
