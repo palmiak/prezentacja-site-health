@@ -368,7 +368,22 @@ return $result;
                         </div>
                     </div>
                 </section>
-
+                <section>
+                    <div class="inner">
+                        <div class="inner-full">
+                            <h2 class="title header-color">Test asynchroniczny</h2>
+                            <div class="inner-right-big">
+                                <div class="text">
+                                    <p>Kiedy używamy:</p>
+                                    <ul>
+                                        <li>kiedy test trwa dłużej - np. jakaś dłuższa operacja na bazie danych</li>
+                                        <li>kiedy chcemy połączyć się z zewnętrzną usługą np. jakimś API</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
                 <section>
                     <div class="inner">
                         <div class="inner-full">
@@ -392,11 +407,11 @@ add_action( 'wp_ajax_health-check-palmiak-secure_test', 'palmiak_secure_test' );
                 </section>
 
                 <section>
-                        <div class="inner">
-                            <div class="inner-full">
-                                <h2 class="title header-color">Test asynchroniczny</h2>
-                                <div class="text">
-    <pre lang="php"><code>function redirect_test() {
+                    <div class="inner">
+                        <div class="inner-full">
+                            <h2 class="title header-color">Test asynchroniczny</h2>
+                            <div class="text">
+<pre lang="php"><code>function redirect_test() {
     $ret = wp_remote_get( 'https://api.redirect.li/v1/http/?url=SOME_URL' );
     $body = json_decode( $ret['body'] );
 
@@ -406,11 +421,11 @@ add_action( 'wp_ajax_health-check-palmiak-secure_test', 'palmiak_secure_test' );
         return true;
     }
 }
-    </code></pre>
-                                </div>
+</code></pre>
                             </div>
                         </div>
-                    </section>
+                    </div>
+                </section>
     
                 <section>
                     <div class="inner">
@@ -440,7 +455,7 @@ wp_send_json_success( $result );
                     </div>
                 </section>
 
-                <section data-background-image="img/sh.gif" data-background-position="top">
+                <section data-background-video="img/sh_video.mp4" data-background-size="contain" data-background-color="#eeeeee">
 					
                 </section>
 
@@ -493,7 +508,7 @@ wp_send_json_success( $result );
 				history: true,
 				center: true,
 
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
+				transition: 'fade', // none/fade/slide/convex/concave/zoom
 
 				// More info https://github.com/hakimel/reveal.js#dependencies
 				dependencies: [
@@ -505,7 +520,7 @@ wp_send_json_success( $result );
 					{ src: 'plugin/zoom-js/zoom.js', async: true },
 					{ src: 'plugin/notes/notes.js', async: true }
 				]
-			});
+            });
 
 		</script>
 
